@@ -10,7 +10,10 @@
      ---------------------------------------------------------- */
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     link.addEventListener('click', function (e) {
-      var target = document.querySelector(link.getAttribute('href'));
+      var href = link.getAttribute('href');
+      // "#" is used by the logo, but is not a valid querySelector.
+      if (!href || href === '#') return;
+      var target = document.getElementById(href.slice(1));
       if (!target) return;
       e.preventDefault();
       closeMobileMenu();
@@ -105,12 +108,12 @@
      ---------------------------------------------------------- */
   var typewriterEl = document.getElementById('hero-typewriter');
   var typewriterWords = [
+    'SaaS\u2011платформы',
+    'AI\u2011ассистенты',
     'Telegram\u2011боты',
-    'AI\u2011интеграции',
-    'веб\u2011приложения',
-    'чат\u2011боты с памятью',
-    'SaaS\u2011MVP под ключ',
-    'RAG и векторный поиск'
+    'автоматизация бизнеса',
+    'AI\u2011маркетинг',
+    'веб\u2011сервисы'
   ];
   var twIndex = 0;
   var twDeleting = false;
@@ -204,7 +207,9 @@
   /* ----------------------------------------------------------
      7. TILT ON HOVER for case cards
      ---------------------------------------------------------- */
-  var tiltCards = document.querySelectorAll('.tilt-card');
+  var tiltCards = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ? []
+    : document.querySelectorAll('.tilt-card');
 
   tiltCards.forEach(function (card) {
     var MAX_TILT = 8; // degrees
