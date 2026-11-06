@@ -1888,7 +1888,7 @@ ul { list-style: none; }
 }
 .featured-modules {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
 }
 .featured-module {
@@ -1996,4 +1996,25 @@ ul { list-style: none; }
 }
 @media (max-width: 360px) {
   .featured-modules {grid-template-columns: 1fr;}
+}
+
+/* Platform overview and descriptive (non-clickable) project cards */
+.featured-project__note {
+  margin-top: 22px;
+  max-width: 800px;
+  color: #9ea8c0;
+  line-height: 1.65;
+  font-size: 0.83rem;
+}
+.case-card--static {
+  cursor: default;
+  transform-style: flat;
+  will-change: auto;
+}
+.case-card--static:hover {
+  border-color: var(--border);
+  box-shadow: none;
+}
+@media (max-width: 640px) {
+  .featured-project__note {font-size: 0.8rem;}
 }
